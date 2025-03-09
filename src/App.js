@@ -1,33 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';  // Import the centralized routes file
+import Navbar from './components/Navbar';    // Import reusable components
+import './App.css';    // Import reusable components
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          {/* Catch-all for 404 page */}
-          <Route path="*" element={<h2>404 Not Found</h2>} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+const App = () => (
+  <Router>
+    <Navbar />  {/* Navbar for navigation */}
+    <div className="container">
+      <AppRoutes />  {/* Centralized routes */}
+    </div>
+  </Router>
+);
 
 export default App;
